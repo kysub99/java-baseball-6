@@ -2,6 +2,7 @@ package baseball.service;
 
 import baseball.model.Computer;
 import baseball.model.Player;
+import baseball.model.Result;
 import baseball.utils.Validator;
 
 import java.util.ArrayList;
@@ -24,20 +25,20 @@ public class GameService {
         return numbers;
     }
 
-    public void judge(Computer computer, Player player) {
-        int strike = 0;
-        int ball = 0;
+    public Result judge(Computer computer, Player player) {
+        Result result = new Result();
         List<Integer> computerNumbers = computer.getNumbers();
         List<Integer> playerNumbers = player.getNumbers();
         for (int i = 0; i < computerNumbers.size(); i++) {
             int playerNumber = playerNumbers.get(i);
             if(computerNumbers.get(i) == playerNumber){
-                strike++;
+                result.addStrike();
                 continue;
             }
             if(computerNumbers.contains(playerNumber)){
-                ball++;
+                result.addBall();
             }
         }
+        return result;
     }
 }

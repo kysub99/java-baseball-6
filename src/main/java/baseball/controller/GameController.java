@@ -2,8 +2,10 @@ package baseball.controller;
 
 import baseball.model.Computer;
 import baseball.model.Player;
+import baseball.model.Result;
 import baseball.service.GameService;
 import baseball.view.InputView;
+import baseball.view.OutputView;
 
 import java.util.List;
 
@@ -15,10 +17,13 @@ public class GameController {
     }
 
     public void run(){
-        String input = InputView.getNumber();
-        List<Integer> playerNumber = gameService.parseIntList(input);
         Computer computer = new Computer();
-        Player player = new Player(playerNumber);
-
+        while(true) {
+            String input = InputView.getNumber();
+            List<Integer> playerNumber = gameService.parseIntList(input);
+            Player player = new Player(playerNumber);
+            Result result = gameService.judge(computer, player);
+            OutputView.printResult(result);
+        }
     }
 }
