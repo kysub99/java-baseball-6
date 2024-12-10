@@ -8,7 +8,11 @@ import java.util.List;
 public class Player {
     private List<Integer> numbers = new ArrayList<>();
 
-    Player(List<Integer> numbers){
+    public Player(List<Integer> numbers){
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public class Computer {
     private List<Integer> numbers = new ArrayList<>();
 
-    Computer(){
+    public Computer(){
         generateNumber();
     }
 
@@ -20,5 +20,9 @@ public class Computer {
                 numbers.add(randomNumber);
             }
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
