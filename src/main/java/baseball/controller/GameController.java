@@ -17,13 +17,30 @@ public class GameController {
     }
 
     public void run(){
-        Computer computer = new Computer();
-        while(true) {
+        while(true){
+            Computer computer = new Computer();
+            game(computer);
+            try {
+                String status = InputView.getStatus();
+                if (gameService.exitGame(status, computer)) {
+                    break;
+                }
+            } catch(IllegalArgumentException e){
+
+            }
+        }
+    }
+
+    public void game(Computer computer){
+        while(true){
             String input = InputView.getNumber();
             List<Integer> playerNumber = gameService.parseIntList(input);
             Player player = new Player(playerNumber);
             Result result = gameService.judge(computer, player);
             OutputView.printResult(result);
+            if(gameService.isEnd(result)){
+                break;
+            }
         }
     }
 }

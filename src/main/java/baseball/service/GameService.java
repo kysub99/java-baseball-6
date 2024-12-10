@@ -4,6 +4,7 @@ import baseball.model.Computer;
 import baseball.model.Player;
 import baseball.model.Result;
 import baseball.utils.Validator;
+import baseball.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +41,23 @@ public class GameService {
             }
         }
         return result;
+    }
+
+    public boolean isEnd(Result result){
+        if(result.getStrike()==3){
+            OutputView.gameEnd();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean exitGame(String status, Computer computer){
+        if(status.equals("1")){
+            return false;
+        }
+        if(status.equals("2")){
+            return true;
+        }
+        throw new IllegalArgumentException("1 또는 2를 입력해주세요.");
     }
 }
